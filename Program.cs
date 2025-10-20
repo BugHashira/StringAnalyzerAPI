@@ -1,5 +1,3 @@
-using StringAnalyzerAPI.Services;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services
@@ -7,20 +5,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Dependency Injection
-builder.Services.AddSingleton<IStringRepository, InMemoryStringRepository>();
-builder.Services.AddScoped<IStringService, StringService>();
-
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+// Enable Swagger for all environments
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "String Analyzer API v1");
+    c.RoutePrefix = "swagger"; // ensures it serves at /swagger
+});
 
+// Configure the HTTP request pipeline
 app.UseHttpsRedirection();
-app.UseRouting();
+app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
