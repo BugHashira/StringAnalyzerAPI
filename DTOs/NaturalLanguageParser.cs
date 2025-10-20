@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace StringAnalyzerAPI.Models;
+namespace StringAnalyzerAPI.DTOs;
 
 public static class NaturalLanguageParser
 {

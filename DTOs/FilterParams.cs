@@ -1,4 +1,4 @@
-﻿namespace StringAnalyzerAPI.Models;
+﻿namespace StringAnalyzerAPI.DTOs;
 
 public class FilterParams
 {

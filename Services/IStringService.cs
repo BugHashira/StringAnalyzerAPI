@@ -1,4 +1,5 @@
-﻿using StringAnalyzerAPI.Models;
+﻿using StringAnalyzerAPI.DTOs;
+using StringAnalyzerAPI.Models;
 
 namespace StringAnalyzerAPI.Services;
 
