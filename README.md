@@ -20,12 +20,33 @@ Requirements
 - Visual Studio 2022 (recommended) or VS Code / CLI
 - (Optional) Docker if you want to run in a container
 
-## Project structure (important files)
-- Program.cs — app startup / DI
-- Controllers/StringsController.cs — API endpoints
-- Services/* — repository and service implementations (in-memory)
-- Models/*, DTOs/* — domain models and request/response DTOs
-- StringAnalyzerAPI.csproj — project file and NuGet references
+Dependencies
+- Project already references:
+  - Microsoft.AspNetCore.OpenApi
+  - Swashbuckle.AspNetCore
+- Add EF provider and tooling (if not present):
+  - Npgsql.EntityFrameworkCore.PostgreSQL
+  - Microsoft.EntityFrameworkCore.Design
+- EF CLI tool:
+  - dotnet tool install --global dotnet-ef
+Dependencies
+- Project already references:
+  - Microsoft.AspNetCore.OpenApi
+  - Swashbuckle.AspNetCore
+- Add EF provider and tooling (if not present):
+  - Npgsql.EntityFrameworkCore.PostgreSQL
+  - Microsoft.EntityFrameworkCore.Design
+- EF CLI tool:
+  - dotnet tool install --global dotnet-ef
+Dependencies
+- Project already references:
+  - Microsoft.AspNetCore.OpenApi
+  - Swashbuckle.AspNetCore
+- Add EF provider and tooling (if not present):
+  - Npgsql.EntityFrameworkCore.PostgreSQL
+  - Microsoft.EntityFrameworkCore.Design
+- EF CLI tool:
+  - dotnet tool install --global dotnet-ef
 
 ## Dependencies and how to install them
 The project targets .NET 9 and references these NuGet packages (already included in the project file):

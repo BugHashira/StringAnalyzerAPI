@@ -3,8 +3,17 @@ using StringAnalyzerAPI.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Read PostgreSQL connection info from environment variables (Railway)
+var connectionString = $"Host={Environment.GetEnvironmentVariable("DB_HOST") ?? builder.Configuration["ConnectionStrings:DefaultConnectionHost"]};" +
+                       $"Port={Environment.GetEnvironmentVariable("DB_PORT") ?? builder.Configuration["ConnectionStrings:DefaultConnectionPort"]};" +
+                       $"Database={Environment.GetEnvironmentVariable("DB_NAME") ?? builder.Configuration["ConnectionStrings:DefaultConnectionDatabase"]};" +
+                       $"Username={Environment.GetEnvironmentVariable("DB_USER") ?? builder.Configuration["ConnectionStrings:DefaultConnectionUser"]};" +
+                       $"Password={Environment.GetEnvironmentVariable("DB_PASSWORD") ?? builder.Configuration["ConnectionStrings:DefaultConnectionPassword"]};" +
+                       $"Pooling=true;Trust Server Certificate=true;";
+
+// Configure EF Core with Npgsql
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(connectionString));
 
 // Add services
 builder.Services.AddControllers();
