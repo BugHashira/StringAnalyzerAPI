@@ -16,15 +16,7 @@ What changed (quick)
 
 Requirements
 - .NET 9 SDK (https://dotnet.microsoft.com)
-- PostgreSQL (local or remote) OR Docker (to run Postgres)
-What changed (quick)
-- Persistence switched from in-memory to EF Core with a PostgreSQL database (see Context/AppDbContext.cs)
-- appsettings.json now contains a DefaultConnection connection string and EF Core migrations are included (Migrations/)
-- Add instructions below to install EF tools and run migrations locally
-
-Requirements
-- .NET 9 SDK (https://dotnet.microsoft.com)
-- PostgreSQL (local or remote) OR Docker (to run Postgres)
+- PostgreSQL (local, remote, or via Docker)
 - Visual Studio 2022 (recommended) or VS Code / CLI
 - (Optional) Docker if you want to run in a container
 
