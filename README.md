@@ -1,14 +1,30 @@
 # StringAnalyzerAPI
 
-Small ASP.NET Core Web API that analyzes and stores strings in memory.  
-Features:
-- Create an analyzed string (length, palindrome, unique characters, word count, character frequency, sha256)
-- Retrieve by value, list with filters, delete
-- Filter by simple natural-language-like queries (parsed by built-in parser)
+Small ASP.NET Core Web API that analyzes and stores strings.  
+Originally stored data in-memory; recent changes add a persistent PostgreSQL-backed store via Entity Framework Core and include EF migrations.
+
+Highlights
+- Analyze strings (length, palindrome, unique characters, word count, character frequency, sha256)
+- Store/retrieve/delete analyzed strings in PostgreSQL
+- List with filters and simple natural-language-like filter parsing
 - Swagger UI for interactive exploration
 
-## Requirements
-- .NET 9 SDK (install from https://dotnet.microsoft.com)
+What changed (quick)
+- Persistence switched from in-memory to EF Core with a PostgreSQL database (see Context/AppDbContext.cs)
+- appsettings.json now contains a DefaultConnection connection string and EF Core migrations are included (Migrations/)
+- Add instructions below to install EF tools and run migrations locally
+
+Requirements
+- .NET 9 SDK (https://dotnet.microsoft.com)
+- PostgreSQL (local or remote) OR Docker (to run Postgres)
+What changed (quick)
+- Persistence switched from in-memory to EF Core with a PostgreSQL database (see Context/AppDbContext.cs)
+- appsettings.json now contains a DefaultConnection connection string and EF Core migrations are included (Migrations/)
+- Add instructions below to install EF tools and run migrations locally
+
+Requirements
+- .NET 9 SDK (https://dotnet.microsoft.com)
+- PostgreSQL (local or remote) OR Docker (to run Postgres)
 - Visual Studio 2022 (recommended) or VS Code / CLI
 - (Optional) Docker if you want to run in a container
 
