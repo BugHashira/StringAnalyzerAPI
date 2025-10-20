@@ -117,8 +117,10 @@ Notes:
 - contains_character query param must be a single character when used.
 - The API returns JSON responses; error cases return appropriate status codes (400/404/409).
 
-## Tests
-There are no unit tests in this repository by default. Add a test project and use `dotnet test` if you add tests.
+Docker (quick):
+- docker run --name stringanalyzer-postgres -e POSTGRES_PASSWORD=yourpassword -e POSTGRES_DB=StringAnalyzerDB -p 5432:5432 -d postgres:15
+- Then set DB_HOST=localhost (or host.docker.internal on some host/container setups), DB_PORT=5432, DB_NAME=StringAnalyzerDB, DB_USER=postgres, DB_PASSWORD=yourpassword.
+---
 
 ## Troubleshooting
 - If Swagger doesn't appear in Production, set __ASPNETCORE_ENVIRONMENT__ to Development or launch with debugger.
