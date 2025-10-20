@@ -5,19 +5,12 @@ using System.Text;
 
 namespace StringAnalyzerAPI.Services;
 
-public class StringService : IStringService
+public class StringService(IStringRepository repo) : IStringService
 {
-    private readonly IStringRepository _repo;
-
-    public StringService(IStringRepository repo)
-    {
-        _repo = repo;
-    }
-
     public AnalyzedString CreateAnalyzedString(string value)
     {
         var hash = ComputeSha256(value);
-        if (_repo.Exists(hash))
+        if (repo.Exists(hash))
             throw new ArgumentException("exists");
 
         var analyzed = new AnalyzedString
@@ -34,15 +27,15 @@ public class StringService : IStringService
             CreatedAt = DateTime.UtcNow
         };
 
-        _repo.Add(analyzed);
+        repo.Add(analyzed);
         return analyzed;
     }
 
-    public AnalyzedString? GetByValue(string value) => _repo.GetByValue(value);
+    public AnalyzedString? GetByValue(string value) => repo.GetByValue(value);
 
     public IEnumerable<AnalyzedString> GetAll(FilterParams filters)
     {
-        var all = _repo.GetAll();
+        var all = repo.GetAll();
 
         if (filters.IsPalindrome.HasValue)
             all = all.Where(x => x.IsPalindrome == filters.IsPalindrome.Value);
@@ -73,11 +66,11 @@ public class StringService : IStringService
 
     public void Delete(string value)
     {
-        var existing = _repo.GetByValue(value);
+        var existing = repo.GetByValue(value);
         if (existing == null)
             throw new KeyNotFoundException("not found");
 
-        _repo.Delete(value);
+        repo.Delete(value);
     }
 
     private static string ComputeSha256(string raw)

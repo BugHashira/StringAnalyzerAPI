@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using StringAnalyzerAPI.Context;
+using StringAnalyzerAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection")
     )
 );
+
+
+// Register your custom services
+builder.Services.AddScoped<IStringService, StringService>();
+builder.Services.AddScoped<IStringRepository, StringRepository>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
